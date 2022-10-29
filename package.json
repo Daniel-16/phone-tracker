@@ -1,0 +1,16 @@
+{
+  "name": "cmp103_server",
+  "version": "1.0.0",
+  "description": "Server containing APIs for Tracking a lost phone",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "DanCodes and Daniel for J",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.0"
+  }
+}
