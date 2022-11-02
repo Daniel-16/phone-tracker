@@ -1,6 +1,6 @@
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(showPosition, errorOnPosition);
+    navigator.geolocation.getCurrentPosition(showPosition, errorOnPosition);
   } else {
     console.error("Navigation is inactive");
   }
