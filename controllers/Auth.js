@@ -39,3 +39,25 @@ exports.findPhone = async (req, res) => {
     });
   }
 };
+
+exports.updateLocation = async (req, res) => {
+  const { userLong, userLat } = req.body;
+  try {
+    const user = await UserModel.findOneAndUpdate(
+      { phoneNumber },
+      {
+        userLong,
+        userLat,
+      }
+    );
+    res.status(201).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    res.status(401).json({
+      success: false,
+      error,
+    });
+  }
+};
