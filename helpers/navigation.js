@@ -1,4 +1,5 @@
-const UserModel = require("../model/index");
+// import UserModel from "../model/index";
+// const axios = require("axios");
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.watchPosition(showPosition, errorOnPosition);
@@ -6,26 +7,34 @@ function getLocation() {
     console.error("Navigation is inactive");
   }
 }
-async function showPosition(position, req, res) {
+function showPosition(position) {
   console.log(position.coords.longitude);
   console.log(position.coords.latitude);
-  try {
-    const user = await UserModel.findOneAndUpdate(
-      { phoneNumber: "09077234932" },
-      {
-        userLat: position.coords.latitude,
-        userLong: position.coords.longitude,
-      }
-    );
-    res.status(201).json({
-      success: true,
-      user,
+  const userLong = position.coords.longitude;
+  const userLat = position.coords.latitude;
+  console.log(`User Longitude is ${userLong} and the Latitude is ${userLat}`);
+  const url = "http://localhost:7000/api/signup";
+  fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      phoneNumber: "09077234933",
+      userLat,
+      userLong,
+    }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.error(err);
     });
-  } catch (err) {
-    res.status(401).json({
-      err,
-    });
-  }
 }
 
 function errorOnPosition() {

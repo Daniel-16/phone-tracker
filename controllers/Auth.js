@@ -1,9 +1,9 @@
 const UserModel = require("../model/index");
-const jwt = require("jsonwebtoken");
 
-const create_token = (_id) => {
-  return jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: "4d" });
-};
+//No point using JWT as user token is not required.
+// const create_token = (_id) => {
+//   return jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: "4d" });
+// };
 
 exports.signup = async (req, res) => {
   const { phoneNumber, userLong, userLat } = req.body;
@@ -13,11 +13,10 @@ exports.signup = async (req, res) => {
       userLong,
       userLat,
     });
-    const token = create_token(user._id);
+    // const token = create_token(user._id);
     res.status(201).json({
       success: true,
       user,
-      token,
     });
   } catch (err) {
     res.status(401).json({
