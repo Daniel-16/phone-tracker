@@ -41,7 +41,7 @@ exports.findPhone = async (req, res) => {
 };
 
 exports.updateLocation = async (req, res) => {
-  const { userLong, userLat } = req.body;
+  const { phoneNumber, userLong, userLat } = req.body;
   try {
     const user = await UserModel.findOneAndUpdate(
       { phoneNumber },
