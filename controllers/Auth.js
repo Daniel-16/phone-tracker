@@ -6,21 +6,25 @@ const UserModel = require("../model/index");
 // };
 
 exports.signup = async (req, res) => {
-  const { phoneNumber, userLong, userLat } = req.body;
+  const { phoneNumber, userLong, userLat, password } = req.body;
   try {
+    const exists = await UserModel.findOne({ phoneNumber });
+    if (exists) {
+      throw Error("This user already exists");
+    }
     const user = await UserModel.create({
       phoneNumber,
       userLong,
       userLat,
+      password
     });
-    // const token = create_token(user._id);
     res.status(201).json({
       success: true,
       user,
     });
   } catch (err) {
     res.status(401).json({
-      err,
+      err: err.message,
     });
   }
 };
