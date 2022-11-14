@@ -16,7 +16,7 @@ exports.signup = async (req, res) => {
       phoneNumber,
       userLong,
       userLat,
-      password
+      password,
     });
     res.status(201).json({
       success: true,
