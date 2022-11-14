@@ -6,32 +6,17 @@ function showPosition(position) {
   const accuracy = position.coords.accuracy;
   localStorage.setItem("userLat", userLat);
   localStorage.setItem("userLong", userLong);
-  console.log(`User Longitude is ${userLong} and the Latitude is ${userLat} and accuracy is ${accuracy}`);
-  // const url = "http://localhost:7000/api/update-location";
-  // fetch(url, {
-  //   method: "POST",
-  //   headers: {
-  //     Accept: "application/json",
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify({
-  //     phoneNumber: "09077234912",
-  //     userLat,
-  //     userLong,
-  //   }),
-  // })
-  //   .then((res) => {
-  //     res.json();
-  //   })
-  //   .then((data) => {
-  //     console.log(data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+  const storeLat = localStorage.getItem("userLat");
+  const storeLong = localStorage.getItem("userLong");
+  console.log(
+    `User Longitude is ${userLong} and the Latitude is ${userLat} and accuracy is ${accuracy}`
+  );
+  if (userLong && userLat != storeLat && storeLong) {
+    console.log("User Location just changed");
+  } else {
+    console.log("User location remains the same");
+  }
 }
-// import UserModel from "../model/index";
-// const axios = require("axios");
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.watchPosition(showPosition, errorOnPosition);
