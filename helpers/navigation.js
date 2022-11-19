@@ -29,7 +29,7 @@ function getLocation() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        phoneNumber: "09077234912",
+        phoneNumber,
         userLat: localStorage.getItem("userLat"),
         userLong: localStorage.getItem("userLong"),
       }),

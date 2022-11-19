@@ -65,3 +65,19 @@ exports.updateLocation = async (req, res) => {
     });
   }
 };
+
+exports.login = async (req, res) => {
+  const { phoneNumber, password } = req.body;
+  try {
+    const user = await UserModel.login(phoneNumber, password);
+    res.status(201).json({
+      success: true,
+      user,
+    });
+  } catch (err) {
+    res.status(401).json({
+      success: false,
+      error: err.message,
+    });
+  }
+};
