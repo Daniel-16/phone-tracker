@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post("/signup", signup);
 router.get("/find-phone/:number", findPhone);
-router.post("/update-location", updateLocation);
+router.post("/update-location/:phoneNumber", updateLocation);
 router.post("/login", login);
 
 module.exports = router;
