@@ -30,16 +30,16 @@ exports.signup = async (req, res) => {
 };
 
 exports.findPhone = async (req, res) => {
-  const { phoneNumber } = req.body;
+  const number = req.params.number;
   try {
-    const user = await UserModel.findOne({ phoneNumber });
+    const user = await UserModel.findOne({ phoneNumber: number });
     res.status(201).json({
       success: true,
       user,
     });
   } catch (error) {
     res.status(401).json({
-      error,
+      error: error.message,
     });
   }
 };
