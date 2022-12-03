@@ -1,10 +1,5 @@
 const UserModel = require("../model/index");
 
-//No point using JWT as user token is not required.
-// const create_token = (_id) => {
-//   return jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: "4d" });
-// };
-
 exports.signup = async (req, res) => {
   const { phoneNumber, userLong, userLat, password } = req.body;
   try {
